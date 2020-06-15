@@ -66,14 +66,15 @@ object Form1: TForm1
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      OnClick = btnListarClick
     end
   end
-  object me: TPageControl
+  object pageControl: TPageControl
     Left = 0
     Top = 81
     Width = 649
     Height = 378
-    ActivePage = TabSheet3
+    ActivePage = TabSheet2
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -415,25 +416,30 @@ object Form1: TForm1
         TabOrder = 3
         OnClick = btnBuscaNomeClick
       end
+      object BtnApagar: TButton
+        Left = 464
+        Top = 59
+        Width = 105
+        Height = 26
+        Caption = 'Apagar'
+        TabOrder = 4
+        OnClick = BtnApagarClick
+      end
     end
     object TabSheet3: TTabSheet
       Caption = 'Listar'
       ImageIndex = 2
+      ExplicitLeft = 8
+      object MemoListar: TMemo
+        Left = 0
+        Top = 0
+        Width = 641
+        Height = 344
+        Align = alClient
+        ScrollBars = ssVertical
+        TabOrder = 0
+      end
     end
-  end
-  object Memo1: TMemo
-    Left = 0
-    Top = 81
-    Width = 649
-    Height = 378
-    Align = alClient
-    Lines.Strings = (
-      'Memo1')
-    TabOrder = 2
-    ExplicitLeft = 216
-    ExplicitTop = 200
-    ExplicitWidth = 185
-    ExplicitHeight = 89
   end
   object ADOConnection: TADOConnection
     ConnectionString = 

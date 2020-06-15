@@ -13,7 +13,7 @@ type
     btnInserir: TButton;
     btnNovo: TButton;
     btnListar: TButton;
-    PageControl1: TPageControl;
+    pageControl: TPageControl;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
@@ -43,21 +43,26 @@ type
     Label9: TLabel;
     btnBuscaMatricula: TButton;
     btnBuscaNome: TButton;
+    MemoListar: TMemo;
+    BtnApagar: TButton;
     procedure FormShow(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnBuscaMatriculaClick(Sender: TObject);
     procedure btnBuscaNomeClick(Sender: TObject);
+    procedure btnListarClick(Sender: TObject);
+    procedure BtnApagarClick(Sender: TObject);
   private
     { Private declarations }
   public
     procedure limparDados;
-    procedure preencheDados;
-    procedure incrementarMat;
+    procedure preencheCampos;
+    procedure incrementaMatricula;
   end;
 
 var
   Form1: TForm1;
+  matricula: integer;
 
 implementation
 
@@ -79,9 +84,10 @@ begin
   Query.Parameters.ParamByName('observacao').Value := MemoObservacao.Text;
 
   try
+    pageControl.ActivePageIndex := 0;
     Query.ExecSQL;
     limparDados;
-    incrementarMat;
+    incrementaMatricula;
     ShowMessage('Dados inseridos com sucesso!');
   Except
     ShowMessage('Erro ao inserir Dados!');
@@ -89,32 +95,57 @@ begin
 
 end;
 
+procedure TForm1.btnListarClick(Sender: TObject);
+begin
+    MemoListar.Clear;
+    Query.SQL.Text := 'select idAluno, nome from Aluno';
+    Query.Open;
+    Query.First;
+
+    while not(Query.Eof) do
+    begin
+      MemoListar.Lines.Add(Query.FieldByName('idAluno').AsString +' - '+
+                           Query.FieldByName('nome').AsString );
+      Query.Next;
+    end;
+
+    pageControl.ActivePageIndex := 2;
+end;
+
 procedure TForm1.btnNovoClick(Sender: TObject);
 begin
+  pageControl.ActivePageIndex := 0;
   limparDados;
+
 end;
 
 procedure TForm1.FormShow(Sender: TObject);
 begin
-  ADOConnection.ConnectionString := 'Provider=SQLNCLI11.1;Integrated Security=SSPI;Persist Security Info=False;User ID="";Initial Catalog=db_Aluno;Data Source=DBRAG-PC\SQLEXPRESS;Initial File Name="";Server SPN="";password=""';
+  ADOConnection.ConnectionString := 'Provider=SQLNCLI11.1;Integrated Security=SSPI;'+
+                                    'Persist Security Info=False;User ID="";'+
+                                    'Initial Catalog=db_Aluno;Data Source=DBRAG-PC\SQLEXPRESS;'+
+                                    'Initial File Name="";Server SPN="";password=""';
+
   ADOConnection.Connected  := true;
 
+  pageControl.ActivePageIndex := 0;
   EditMat.Text:='1';
-//  Query.SQL.Text := 'select max(idAluno) from Aluno';
+  Query.SQL.Text := 'select max(idAluno) utimaMatricula from Aluno';
+  Query.Open;
+  Query.First;
+  matricula := (Query.FieldByName('utimaMatricula').AsInteger) + 1;
+  EditMat.Text := string.Parse(matricula);
 end;
 
-procedure TForm1.incrementarMat;
-var
-   aux : integer;
+procedure TForm1.incrementaMatricula;
 begin
-   aux := StrToInt(EditMat.Text);
-   inc(aux);
-
-   EditMat.Text := IntToStr(aux);
+   inc(matricula);
+   EditMat.Text := IntToStr(matricula);
 end;
 
 procedure TForm1.limparDados;
 begin
+   EditMat.Text := IntToStr(matricula);
    EditNome.Clear;
    EditNome.SetFocus;
    RadioButtonMasc.Checked := true;
@@ -124,22 +155,35 @@ begin
    EditEstado.Clear;
 end;
 
+procedure TForm1.BtnApagarClick(Sender: TObject);
+begin
+    Query.SQL.Text := 'delete Aluno where idAluno = :id';
+    Query.Parameters.ParamByName('id').Value := EditBuscaMatricula.Text;
+    Query.ExecSQL;
+
+    if query.RowsAffected > 0 then
+      ShowMessage('Deletado com sucesso!')
+    else
+      ShowMessage('Não existe registros a serem deletados!');
+
+end;
+
 procedure TForm1.btnBuscaMatriculaClick(Sender: TObject);
 begin
     Query.SQL.Text := 'select * from Aluno where idAluno = :id';
     Query.Parameters.ParamByName('id').Value := EditBuscaMatricula.Text;
     Query.Open;
-    preencheDados;
+    preencheCampos;
 end;
 
 procedure TForm1.btnBuscaNomeClick(Sender: TObject);
 begin
     Query.SQL.Text := 'select * from Aluno where nome like '''+EditBuscaNome.Text+'%''';
     Query.Open;
-    preencheDados;
+    preencheCampos;
 end;
 
-procedure TForm1.preencheDados;
+procedure TForm1.preencheCampos;
 begin
     if not Query.IsEmpty then
     begin
@@ -160,7 +204,7 @@ begin
           RadioButtonFem.Checked := true;
         end;
 
-        PageControl1.ActivePageIndex := 0;
+        pageControl.ActivePageIndex := 0;
         ShowMessage('Informação preenchida com sucesso!');
     end
     else

@@ -66,14 +66,15 @@ object Form1: TForm1
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      OnClick = btnListarClick
     end
   end
-  object PageControl1: TPageControl
+  object pageControl: TPageControl
     Left = 0
     Top = 81
     Width = 649
     Height = 378
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -333,8 +334,8 @@ object Form1: TForm1
       ImageIndex = 1
       ParentFont = False
       object Label1: TLabel
-        Left = 29
-        Top = 35
+        Left = 21
+        Top = 99
         Width = 65
         Height = 18
         Caption = 'Matr'#237'cula'
@@ -346,8 +347,8 @@ object Form1: TForm1
         ParentFont = False
       end
       object Label9: TLabel
-        Left = 29
-        Top = 99
+        Left = 21
+        Top = 27
         Width = 41
         Height = 18
         Caption = 'Nome'
@@ -359,8 +360,8 @@ object Form1: TForm1
         ParentFont = False
       end
       object EditBuscaMatricula: TEdit
-        Left = 29
-        Top = 59
+        Left = 21
+        Top = 123
         Width = 239
         Height = 26
         Font.Charset = DEFAULT_CHARSET
@@ -372,8 +373,8 @@ object Form1: TForm1
         TabOrder = 0
       end
       object EditBuscaNome: TEdit
-        Left = 29
-        Top = 123
+        Left = 21
+        Top = 51
         Width = 239
         Height = 26
         Font.Charset = DEFAULT_CHARSET
@@ -386,8 +387,8 @@ object Form1: TForm1
         TabOrder = 1
       end
       object btnBuscaMatricula: TButton
-        Left = 296
-        Top = 59
+        Left = 288
+        Top = 123
         Width = 153
         Height = 26
         Caption = 'Buscar Matricula'
@@ -401,8 +402,8 @@ object Form1: TForm1
         OnClick = btnBuscaMatriculaClick
       end
       object btnBuscaNome: TButton
-        Left = 296
-        Top = 123
+        Left = 288
+        Top = 51
         Width = 153
         Height = 26
         Caption = 'Buscar Nome'
@@ -415,10 +416,29 @@ object Form1: TForm1
         TabOrder = 3
         OnClick = btnBuscaNomeClick
       end
+      object BtnApagar: TButton
+        Left = 456
+        Top = 123
+        Width = 105
+        Height = 26
+        Caption = 'Apagar'
+        TabOrder = 4
+        OnClick = BtnApagarClick
+      end
     end
     object TabSheet3: TTabSheet
       Caption = 'Listar'
       ImageIndex = 2
+      ExplicitLeft = 8
+      object MemoListar: TMemo
+        Left = 0
+        Top = 0
+        Width = 641
+        Height = 344
+        Align = alClient
+        ScrollBars = ssVertical
+        TabOrder = 0
+      end
     end
   end
   object ADOConnection: TADOConnection

@@ -25,40 +25,66 @@ object Form1: TForm1
     TabOrder = 0
     object btnInserir: TButton
       Left = 25
-      Top = 29
-      Width = 75
-      Height = 25
+      Top = 21
+      Width = 80
+      Height = 30
       Caption = 'Inserir'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 0
+      OnClick = btnInserirClick
     end
     object btnNovo: TButton
       Left = 122
-      Top = 29
-      Width = 75
-      Height = 25
+      Top = 21
+      Width = 80
+      Height = 30
       Caption = 'Novo'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 1
+      OnClick = btnNovoClick
     end
     object btnListar: TButton
       Left = 221
-      Top = 29
-      Width = 75
-      Height = 25
+      Top = 21
+      Width = 80
+      Height = 30
       Caption = 'Listar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 2
+      OnClick = btnListarClick
     end
   end
-  object PageControl1: TPageControl
+  object pageControl: TPageControl
     Left = 0
     Top = 81
     Width = 649
     Height = 378
-    ActivePage = TabSheet1
+    ActivePage = TabSheet3
     Align = alClient
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Dados'
-      ExplicitLeft = 8
       object Label2: TLabel
         Left = 21
         Top = 27
@@ -167,11 +193,11 @@ object Form1: TForm1
         Left = 21
         Top = 51
         Width = 72
-        Height = 26
+        Height = 27
         Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -16
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
@@ -181,10 +207,10 @@ object Form1: TForm1
         Left = 118
         Top = 51
         Width = 239
-        Height = 26
+        Height = 27
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -16
         Font.Name = 'Tahoma'
         Font.Style = []
         MaxLength = 40
@@ -248,10 +274,10 @@ object Form1: TForm1
         Left = 381
         Top = 122
         Width = 148
-        Height = 26
+        Height = 27
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -16
         Font.Name = 'Tahoma'
         Font.Style = []
         MaxLength = 20
@@ -262,11 +288,11 @@ object Form1: TForm1
         Left = 197
         Top = 122
         Width = 160
-        Height = 26
+        Height = 27
         EditMask = '999.999.999-99;1;_'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -16
         Font.Name = 'Tahoma'
         Font.Style = []
         MaxLength = 14
@@ -278,10 +304,10 @@ object Form1: TForm1
         Left = 550
         Top = 122
         Width = 55
-        Height = 26
+        Height = 27
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
+        Font.Height = -16
         Font.Name = 'Tahoma'
         Font.Style = []
         MaxLength = 20
@@ -300,7 +326,96 @@ object Form1: TForm1
     end
     object TabSheet2: TTabSheet
       Caption = 'Buscar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ImageIndex = 1
+      ParentFont = False
+      object Label1: TLabel
+        Left = 29
+        Top = 35
+        Width = 65
+        Height = 18
+        Caption = 'Matr'#237'cula'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label9: TLabel
+        Left = 29
+        Top = 99
+        Width = 41
+        Height = 18
+        Caption = 'Nome'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object EditBuscaMatricula: TEdit
+        Left = 29
+        Top = 59
+        Width = 239
+        Height = 26
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+      end
+      object EditBuscaNome: TEdit
+        Left = 29
+        Top = 123
+        Width = 239
+        Height = 26
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -15
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        MaxLength = 40
+        ParentFont = False
+        TabOrder = 1
+      end
+      object btnBuscaMatricula: TButton
+        Left = 296
+        Top = 59
+        Width = 153
+        Height = 26
+        Caption = 'Buscar Matricula'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 2
+        OnClick = btnBuscaMatriculaClick
+      end
+      object btnBuscaNome: TButton
+        Left = 296
+        Top = 123
+        Width = 153
+        Height = 26
+        Caption = 'Buscar Nome'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -16
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 3
+        OnClick = btnBuscaNomeClick
+      end
     end
     object TabSheet3: TTabSheet
       Caption = 'Listar'
@@ -313,13 +428,13 @@ object Form1: TForm1
       'nfo=False;User ID="";Initial Catalog=db_Aluno;Data Source=DBRAG-' +
       'PC\SQLEXPRESS;Initial File Name="";Server SPN=""'
     Provider = 'SQLNCLI11.1'
-    Left = 400
-    Top = 32
+    Left = 376
+    Top = 24
   end
   object Query: TADOQuery
     Connection = ADOConnection
     Parameters = <>
-    Left = 480
-    Top = 32
+    Left = 440
+    Top = 24
   end
 end

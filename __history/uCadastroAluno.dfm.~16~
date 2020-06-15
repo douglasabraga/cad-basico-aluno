@@ -73,7 +73,7 @@ object Form1: TForm1
     Top = 81
     Width = 649
     Height = 378
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -84,9 +84,6 @@ object Form1: TForm1
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Dados'
-      ExplicitLeft = 8
-      ExplicitTop = 24
-      ExplicitHeight = 350
       object Label2: TLabel
         Left = 21
         Top = 27
@@ -335,8 +332,6 @@ object Form1: TForm1
       Font.Style = []
       ImageIndex = 1
       ParentFont = False
-      ExplicitLeft = 8
-      ExplicitTop = 22
       object Label1: TLabel
         Left = 29
         Top = 35
@@ -368,7 +363,6 @@ object Form1: TForm1
         Top = 59
         Width = 239
         Height = 26
-        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -15
@@ -404,6 +398,7 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
         TabOrder = 2
+        OnClick = btnBuscaMatriculaClick
       end
       object btnBuscaNome: TButton
         Left = 296
@@ -418,13 +413,12 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
         TabOrder = 3
+        OnClick = btnBuscaNomeClick
       end
     end
     object TabSheet3: TTabSheet
       Caption = 'Listar'
       ImageIndex = 2
-      ExplicitTop = 24
-      ExplicitHeight = 350
     end
   end
   object ADOConnection: TADOConnection

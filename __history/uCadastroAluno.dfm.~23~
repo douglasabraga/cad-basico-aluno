@@ -66,9 +66,10 @@ object Form1: TForm1
       Font.Style = []
       ParentFont = False
       TabOrder = 2
+      OnClick = btnListarClick
     end
   end
-  object PageControl1: TPageControl
+  object pageControl: TPageControl
     Left = 0
     Top = 81
     Width = 649
@@ -363,7 +364,6 @@ object Form1: TForm1
         Top = 59
         Width = 239
         Height = 26
-        Enabled = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -15
@@ -399,6 +399,7 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
         TabOrder = 2
+        OnClick = btnBuscaMatriculaClick
       end
       object btnBuscaNome: TButton
         Left = 296
@@ -413,11 +414,25 @@ object Form1: TForm1
         Font.Style = []
         ParentFont = False
         TabOrder = 3
+        OnClick = btnBuscaNomeClick
       end
     end
     object TabSheet3: TTabSheet
       Caption = 'Listar'
       ImageIndex = 2
+      ExplicitLeft = 8
+      object MemoListar: TMemo
+        Left = 0
+        Top = 0
+        Width = 641
+        Height = 344
+        Align = alClient
+        TabOrder = 0
+        ExplicitLeft = 232
+        ExplicitTop = 128
+        ExplicitWidth = 185
+        ExplicitHeight = 89
+      end
     end
   end
   object ADOConnection: TADOConnection
