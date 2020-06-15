@@ -46,10 +46,13 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnInserirClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
+    procedure btnBuscaMatriculaClick(Sender: TObject);
+    procedure btnBuscaNomeClick(Sender: TObject);
   private
     { Private declarations }
   public
     procedure limparDados;
+    procedure preencheDados;
     procedure incrementarMat;
   end;
 
@@ -118,7 +121,50 @@ begin
    DateTimeNascimento.Date := Date();
    EditCpf.Clear;
    EditCidade.Clear;
-   EditCpf.Clear;
+   EditEstado.Clear;
+end;
+
+procedure TForm1.btnBuscaMatriculaClick(Sender: TObject);
+begin
+    Query.SQL.Text := 'select * from Aluno where idAluno = :id';
+    Query.Parameters.ParamByName('id').Value := EditBuscaMatricula.Text;
+    Query.Open;
+    preencheDados;
+end;
+
+procedure TForm1.btnBuscaNomeClick(Sender: TObject);
+begin
+    Query.SQL.Text := 'select * from Aluno where nome like '''+EditBuscaNome.Text+'%''';
+    Query.Open;
+    preencheDados;
+end;
+
+procedure TForm1.preencheDados;
+begin
+    if not Query.IsEmpty then
+    begin
+        EditMat.Text := Query.FieldByName('idAluno').AsString;
+        EditNome.Text := Query.FieldByName('nome').AsString;
+        DateTimeNascimento.Date := Query.FieldByName('dataNascimento').AsDateTime;
+        EditCidade.Text := Query.FieldByName('cidade').AsString;
+        EditEstado.Text := Query.FieldByName('estado').AsString;
+        EditCpf.Text := Query.FieldByName('cpf').AsString;
+        MemoObservacao.Text := Query.FieldByName('observacao').AsString;
+
+        if Query.FieldByName('sexo').AsBoolean then
+        begin
+          RadioButtonMasc.Checked := true;
+        end
+        else
+        begin
+          RadioButtonFem.Checked := true;
+        end;
+
+        PageControl1.ActivePageIndex := 0;
+        ShowMessage('Informação preenchida com sucesso!');
+    end
+    else
+        ShowMessage('Não existe registros relacionados ao filtro!');
 end;
 
 end.
