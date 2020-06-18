@@ -74,7 +74,7 @@ object Form1: TForm1
     Top = 81
     Width = 649
     Height = 378
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -282,7 +282,7 @@ object Form1: TForm1
         Font.Style = []
         MaxLength = 20
         ParentFont = False
-        TabOrder = 4
+        TabOrder = 5
       end
       object EditCpf: TMaskEdit
         Left = 197
@@ -297,7 +297,7 @@ object Form1: TForm1
         Font.Style = []
         MaxLength = 14
         ParentFont = False
-        TabOrder = 5
+        TabOrder = 4
         Text = '   .   .   -  '
       end
       object EditEstado: TEdit
@@ -429,7 +429,6 @@ object Form1: TForm1
     object TabSheet3: TTabSheet
       Caption = 'Listar'
       ImageIndex = 2
-      ExplicitLeft = 8
       object MemoListar: TMemo
         Left = 0
         Top = 0
@@ -443,9 +442,9 @@ object Form1: TForm1
   end
   object ADOConnection: TADOConnection
     ConnectionString = 
-      'Provider=SQLNCLI11.1;Integrated Security=SSPI;Persist Security I' +
-      'nfo=False;User ID="";Initial Catalog=db_Aluno;Data Source=DBRAG-' +
-      'PC\SQLEXPRESS;Initial File Name="";Server SPN=""'
+      'Provider=SQLNCLI11.1;Persist Security Info=False;User ID=sa;Init' +
+      'ial Catalog=db_Aluno;Data Source=DBRAG-PC;Initial File Name="";S' +
+      'erver SPN=""'
     Provider = 'SQLNCLI11.1'
     Left = 376
     Top = 24

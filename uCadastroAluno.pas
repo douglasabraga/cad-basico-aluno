@@ -121,10 +121,7 @@ end;
 
 procedure TForm1.FormShow(Sender: TObject);
 begin
-  ADOConnection.ConnectionString := 'Provider=SQLNCLI11.1;Integrated Security=SSPI;'+
-                                    'Persist Security Info=False;User ID="";'+
-                                    'Initial Catalog=db_Aluno;Data Source=DBRAG-PC\SQLEXPRESS;'+
-                                    'Initial File Name="";Server SPN="";password=""';
+  ADOConnection.ConnectionString := 'Provider=SQLNCLI11.1;Persist Security Info=False;User ID=sa;Initial Catalog=db_Aluno;Data Source=DBRAG-PC;Initial File Name="";Server SPN="";password="123456"';
 
   ADOConnection.Connected  := true;
 
@@ -145,6 +142,7 @@ end;
 
 procedure TForm1.limparDados;
 begin
+  btnInserir.Enabled := true;
    EditMat.Text := IntToStr(matricula);
    EditNome.Clear;
    EditNome.SetFocus;
@@ -153,6 +151,7 @@ begin
    EditCpf.Clear;
    EditCidade.Clear;
    EditEstado.Clear;
+   MemoObservacao.Clear;
 end;
 
 procedure TForm1.BtnApagarClick(Sender: TObject);
@@ -187,6 +186,7 @@ procedure TForm1.preencheCampos;
 begin
     if not Query.IsEmpty then
     begin
+        btnInserir.Enabled := false;
         EditMat.Text := Query.FieldByName('idAluno').AsString;
         EditNome.Text := Query.FieldByName('nome').AsString;
         DateTimeNascimento.Date := Query.FieldByName('dataNascimento').AsDateTime;

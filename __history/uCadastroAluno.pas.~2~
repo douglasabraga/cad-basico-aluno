@@ -57,7 +57,7 @@ type
   public
     procedure limparDados;
     procedure preencheCampos;
-    procedure verificaMatricula;
+    procedure incrementaMatricula;
   end;
 
 var
@@ -87,7 +87,7 @@ begin
     pageControl.ActivePageIndex := 0;
     Query.ExecSQL;
     limparDados;
-    verificaMatricula;
+    incrementaMatricula;
     ShowMessage('Dados inseridos com sucesso!');
   Except
     ShowMessage('Erro ao inserir Dados!');
@@ -116,11 +116,13 @@ procedure TForm1.btnNovoClick(Sender: TObject);
 begin
   pageControl.ActivePageIndex := 0;
   limparDados;
+
 end;
 
 procedure TForm1.FormShow(Sender: TObject);
 begin
-  ADOConnection.ConnectionString := 'Provider=SQLNCLI11.1;Integrated Security=SSPI;Persist Security Info=False;User ID="";Initial Catalog=db_Aluno;Data Source=DBRAG-PC\SQLEXPRESS;Initial File Name="";Server SPN="";password=""';
+  ADOConnection.ConnectionString := 'Provider=SQLNCLI11.1;Persist Security Info=False;User ID=sa;Initial Catalog=db_Aluno;Data Source=DBRAG-PC;Initial File Name="";Server SPN="";password="123456"';
+
   ADOConnection.Connected  := true;
 
   pageControl.ActivePageIndex := 0;
@@ -132,21 +134,15 @@ begin
   EditMat.Text := string.Parse(matricula);
 end;
 
-procedure TForm1.verificaMatricula;
-var
-   aux : integer;
+procedure TForm1.incrementaMatricula;
 begin
-//   if matricula = strToInt(EditMat.Text) then
-//   begin
-//      inc(matricula);
-//   end;
    inc(matricula);
    EditMat.Text := IntToStr(matricula);
-
 end;
 
 procedure TForm1.limparDados;
 begin
+   EditMat.Text := IntToStr(matricula);
    EditNome.Clear;
    EditNome.SetFocus;
    RadioButtonMasc.Checked := true;
@@ -163,10 +159,9 @@ begin
     Query.ExecSQL;
 
     if query.RowsAffected > 0 then
-      ShowMessage('Deletado com sucesso!');
+      ShowMessage('Deletado com sucesso!')
     else
       ShowMessage('Não existe registros a serem deletados!');
-
 
 end;
 
